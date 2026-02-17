@@ -1,26 +1,32 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Gltp Starion";
+  src: url("/fonts/GltipStarion.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1d85c2;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-text-light: #1d85c2;
+  --color-text-dark: #74ccff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
-    --foreground: #ededed;
+    --foreground: #74ccff;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Gltp Starion", Helvetica, sans-serif;
 }
