@@ -47,11 +47,11 @@ export default function ConfigureSection(props: ConfigureSectionProps) {
   } = props;
 
   return (
-    <section id="configure" className="w-full flex items-center justify-center py-20 px-6 flex-col">
+    <section id="configure" className="w-full flex items-center justify-center py-12 md:py-20 px-4 md:px-6 flex-col">
       <div className="w-full max-w-5xl flex flex-col items-center">
-        <h2 className="text-5xl font-bold text-text-neon neon-text mb-16 relative">
+        <h2 className="text-3xl md:text-5xl font-bold text-text-neon neon-text mb-12 md:mb-16 relative text-center">
           Configure Your RAM
-          <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-32 h-1 bg-text-neon rounded-full animate-pulse-slow"></div>
+          <div className="absolute -bottom-4 md:-bottom-6 left-1/2 -translate-x-1/2 w-24 md:w-32 h-1 bg-text-neon rounded-full animate-pulse-slow"></div>
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
           <div className="flex flex-col gap-6">
@@ -60,7 +60,7 @@ export default function ConfigureSection(props: ConfigureSectionProps) {
             <select
                 value={ddr} 
                 onChange={(e) => setDdr(e.target.value)}
-                className="w-full max-w-xs px-4 py-2 rounded-lg bg-slate-900/50 text-white border border-slate-700 focus:border-cyan-500 outline-none transition-colors cursor-pointer"
+                className="w-full px-4 py-2 rounded-lg bg-slate-900/50 text-white border border-slate-700 focus:border-cyan-500 outline-none transition-colors cursor-pointer"
               >
                 <option value="DDR3">DDR3</option>
                 <option value="DDR4">DDR4</option>
@@ -73,7 +73,7 @@ export default function ConfigureSection(props: ConfigureSectionProps) {
             <select
                 value={clock} 
                 onChange={(e) => setClock(e.target.value)}
-                className="w-full max-w-xs px-4 py-2 rounded-lg bg-slate-900/50 text-white border border-slate-700 focus:border-cyan-500 outline-none transition-colors cursor-pointer"
+                className="w-full px-4 py-2 rounded-lg bg-slate-900/50 text-white border border-slate-700 focus:border-cyan-500 outline-none transition-colors cursor-pointer"
               >
                 <option value="2400">2400 MHz</option>
                 <option value="3200">3200 MHz</option>
@@ -101,7 +101,7 @@ export default function ConfigureSection(props: ConfigureSectionProps) {
               <select
                 value={cooling}
                 onChange={(e) => setCooling(e.target.value)}
-                className="w-full max-w-xs px-4 py-2 rounded-lg bg-slate-900/50 text-white border border-slate-700 focus:border-cyan-500 outline-none transition-colors cursor-pointer"
+                className="w-full px-4 py-2 rounded-lg bg-slate-900/50 text-white border border-slate-700 focus:border-cyan-500 outline-none transition-colors cursor-pointer"
               >
                 <option value="">None</option>
                 <option value="Fan">Fan</option>

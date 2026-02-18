@@ -66,20 +66,20 @@ export default function DownloadSection(props: DownloadSectionProps) {
   };
 
   return (
-    <section id="download" className="w-full flex items-center justify-center py-24 px-6 flex-col bg-slate-950/50 backdrop-blur-sm">
+    <section id="download" className="w-full flex items-center justify-center py-12 md:py-24 px-4 md:px-6 flex-col bg-slate-950/50 backdrop-blur-sm">
       <div className="w-full max-w-4xl flex flex-col items-center">
-        <h2 className="text-4xl font-bold text-text-neon neon-text mb-12 relative">
+        <h2 className="text-3xl md:text-4xl font-bold text-text-neon neon-text mb-12 relative text-center">
           Download Your RAM
           <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-text-neon rounded-full animate-pulse-slow"></div>
         </h2>
 
-        <div className="glass-card p-8 rounded-2xl border border-slate-700 w-full max-w-lg shadow-2xl relative overflow-hidden group">
+        <div className="glass-card p-4 md:p-8 rounded-2xl border border-slate-700 w-full max-w-lg shadow-2xl relative overflow-hidden group">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
           
           <div className="flex flex-col gap-6">
-            <div className="bg-slate-900/80 p-5 rounded-xl border border-slate-800">
+            <div className="bg-slate-900/80 p-4 md:p-5 rounded-xl border border-slate-800">
               <h3 className="text-xl font-bold text-text-neon neon-text mb-4 border-b border-slate-800 pb-2">Your Configuration</h3>
-              <div className="grid grid-cols-2 gap-y-3 gap-x-4 text-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-4 text-sm">
                 <p className="flex justify-between border-b border-slate-800/50 pb-1"><span className="text-slate-500">Capacity:</span> <span className="text-slate-200 font-mono">{size} GB</span></p>
                 <p className="flex justify-between border-b border-slate-800/50 pb-1"><span className="text-slate-500">Generation:</span> <span className="text-slate-200 font-mono">{ddr}</span></p>
                 <p className="flex justify-between border-b border-slate-800/50 pb-1"><span className="text-slate-500">Clock:</span> <span className="text-slate-200 font-mono">{clock} MHz</span></p>
@@ -120,7 +120,7 @@ export default function DownloadSection(props: DownloadSectionProps) {
               <button
                 onClick={handleDownload}
                 disabled={isLoading || !agreedToTerms}
-                className="w-full relative px-6 py-4 bg-gradient-to-br from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 disabled:from-slate-800 disabled:to-slate-900 disabled:text-slate-600 text-white font-black text-lg uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg hover:shadow-cyan-500/25 active:scale-[0.98] disabled:cursor-not-allowed group overflow-hidden"
+                className="w-full relative px-4 md:px-6 py-3 md:py-4 bg-gradient-to-br from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 disabled:from-slate-800 disabled:to-slate-900 disabled:text-slate-600 text-white font-black text-base md:text-lg uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg hover:shadow-cyan-500/25 active:scale-[0.98] disabled:cursor-not-allowed group overflow-hidden"
               >
                 <div className="absolute inset-0 w-full h-full bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform"></div>
                 {isLoading ? (
