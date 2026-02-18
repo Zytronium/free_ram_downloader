@@ -7,14 +7,16 @@ function ConfigWidget(props: {
   children?: ReactNode
 }) {
   return (
-    <div className="flex flex-col gap-2 bg-zinc-200 dark:bg-zinc-800 p-4
-    rounded-lg items-center border-1 border-zinc-500 w-full">
-      <h3 className="text-xl font-bold text-text-neon">{props.title}</h3>
+    <div className="flex flex-col gap-3 glass-card p-6
+    rounded-xl items-center w-full hover-lift transition-all group">
+      <h3 className="text-xl font-bold text-text-neon neon-text group-hover:scale-105 transition-transform">{props.title}</h3>
       {props.description && (
         <p
-          className="text-sm text-zinc-600 dark:text-zinc-400 text-center">{props.description}</p>
+          className="text-sm text-slate-400 text-center">{props.description}</p>
       )}
-      {props.children}
+      <div className="mt-2 w-full flex justify-center">
+        {props.children}
+      </div>
     </div>
   );
 }
@@ -45,18 +47,20 @@ export default function ConfigureSection(props: ConfigureSectionProps) {
   } = props;
 
   return (
-    <section id="confirgure" className="bg-cyan-600 w-full flex items-center justify-center py-6 px-16 flex-col">
-      <div className="w-full max-w-3xl flex flex-col items-center">
-        <h2 className="text-4xl font-bold text-text-neon">Configure Your RAM</h2>
-        <Spacer />
-        <div className="flex flex-row gap-4 w-full max-w-200">
-          <div className="flex flex-col gap-2 w-100 min-w-0">
+    <section id="configure" className="w-full flex items-center justify-center py-20 px-6 flex-col">
+      <div className="w-full max-w-5xl flex flex-col items-center">
+        <h2 className="text-5xl font-bold text-text-neon neon-text mb-16 relative">
+          Configure Your RAM
+          <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-32 h-1 bg-text-neon rounded-full animate-pulse-slow"></div>
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
+          <div className="flex flex-col gap-6">
             <ConfigWidget title="Select DDR Type"
                           description="Choose your RAM generation">
             <select
                 value={ddr} 
                 onChange={(e) => setDdr(e.target.value)}
-                className="px-3 py-2 rounded bg-zinc-100 dark:bg-zinc-700 text-slate-900 dark:text-white border border-zinc-400"
+                className="w-full max-w-xs px-4 py-2 rounded-lg bg-slate-900/50 text-white border border-slate-700 focus:border-cyan-500 outline-none transition-colors cursor-pointer"
               >
                 <option value="DDR3">DDR3</option>
                 <option value="DDR4">DDR4</option>
@@ -69,7 +73,7 @@ export default function ConfigureSection(props: ConfigureSectionProps) {
             <select
                 value={clock} 
                 onChange={(e) => setClock(e.target.value)}
-                className="px-3 py-2 rounded bg-zinc-100 dark:bg-zinc-700 text-slate-900 dark:text-white border border-zinc-400"
+                className="w-full max-w-xs px-4 py-2 rounded-lg bg-slate-900/50 text-white border border-slate-700 focus:border-cyan-500 outline-none transition-colors cursor-pointer"
               >
                 <option value="2400">2400 MHz</option>
                 <option value="3200">3200 MHz</option>
@@ -79,7 +83,7 @@ export default function ConfigureSection(props: ConfigureSectionProps) {
             </ConfigWidget>
           </div>
           
-          <div className="flex flex-col gap-2 w-100 min-w-0">
+          <div className="flex flex-col gap-6">
             <ConfigWidget title="Select Capacity (GB)"
                           description="How much RAM do you need?">
             <input
@@ -88,16 +92,16 @@ export default function ConfigureSection(props: ConfigureSectionProps) {
                 max="1024" 
                 value={size}
                 onChange={(e) => setSize(Number(e.target.value))}
-                className="px-3 py-2 rounded bg-zinc-100 dark:bg-zinc-700 text-slate-900 dark:text-white border border-zinc-400 w-24"
+                className="w-32 px-4 py-2 rounded-lg bg-slate-900/50 text-white border border-slate-700 focus:border-cyan-500 outline-none transition-colors text-center font-bold"
               />
             </ConfigWidget>
 
             <ConfigWidget title="Select Cooling"
-                          description="Keep your RAM cool under pressure">
+                          description="Keep your digital RAM cool I guess">
               <select
                 value={cooling}
                 onChange={(e) => setCooling(e.target.value)}
-                className="px-3 py-2 rounded bg-zinc-100 dark:bg-zinc-700 text-slate-900 dark:text-white border border-zinc-400"
+                className="w-full max-w-xs px-4 py-2 rounded-lg bg-slate-900/50 text-white border border-slate-700 focus:border-cyan-500 outline-none transition-colors cursor-pointer"
               >
                 <option value="">None</option>
                 <option value="Fan">Fan</option>
@@ -108,32 +112,36 @@ export default function ConfigureSection(props: ConfigureSectionProps) {
           </div>
         </div>
         
-        <Spacer />
-        
-        <div className="flex flex-row gap-4 w-full max-w-200">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl mt-6">
           <ConfigWidget title="RGB Lighting"
-                        description="Make it glow somehow">
-          <label className="flex items-center gap-2 cursor-pointer">
+                        description="Make it glow somehow, idk I'm a ram wizard, not a scientist">
+          <label className="flex items-center gap-4 cursor-pointer group/label">
+              <div className={`w-12 h-6 rounded-full transition-colors relative ${rgb ? 'bg-cyan-500' : 'bg-slate-700'}`}>
+                <div className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform ${rgb ? 'translate-x-6' : ''}`}></div>
+              </div>
               <input 
                 type="checkbox" 
                 checked={rgb}
                 onChange={(e) => setRgb(e.target.checked)}
-                className="w-5 h-5"
+                className="hidden"
               />
-              <span>Enable RGB</span>
+              <span className="font-medium text-slate-200 uppercase tracking-wider text-xs">Enable RGB</span>
             </label>
           </ConfigWidget>
 
-          <ConfigWidget title="Active Virus Protection"
-                        description="Your RAM will actively scan for viruses and malicious memory blocks">
-          <label className="flex items-center gap-2 cursor-pointer">
+          <ConfigWidget title="Active Protection"
+                        description="Scan active memory for viruses and malicious memory blocks">
+          <label className="flex items-center gap-4 cursor-pointer group/label">
+              <div className={`w-12 h-6 rounded-full transition-colors relative ${antivirus ? 'bg-cyan-500' : 'bg-slate-700'}`}>
+                <div className={`absolute top-1 left-1 w-4 h-4 rounded-full bg-white transition-transform ${antivirus ? 'translate-x-6' : ''}`}></div>
+              </div>
               <input 
                 type="checkbox" 
                 checked={antivirus}
                 onChange={(e) => setAntivirus(e.target.checked)}
-                className="w-5 h-5"
+                className="hidden"
               />
-              <span>Enable Protection</span>
+              <span className="font-medium text-slate-200 uppercase tracking-wider text-xs">Enable Shield</span>
             </label>
           </ConfigWidget>
         </div>

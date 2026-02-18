@@ -63,51 +63,57 @@ export default function DownloadSection(props: DownloadSectionProps) {
   };
 
   return (
-    <section id="download" className="bg-zinc-950 w-full flex items-center justify-center py-6 px-16 flex-col">
-      <div className="w-full max-w-3xl flex flex-col items-center">
-        <h2 className="text-4xl font-bold text-text-neon">Download Your RAM</h2>
-        <Spacer />
+    <section id="download" className="w-full flex items-center justify-center py-24 px-6 flex-col bg-slate-950/50 backdrop-blur-sm">
+      <div className="w-full max-w-4xl flex flex-col items-center">
+        <h2 className="text-4xl font-bold text-text-neon neon-text mb-12 relative">
+          Download Your RAM
+          <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-1 bg-text-neon rounded-full animate-pulse-slow"></div>
+        </h2>
 
-        <div className="bg-zinc-200 dark:bg-zinc-800 p-6 rounded-lg border-2 border-zinc-500 w-full max-w-md">
-          <div className="flex flex-col gap-4">
-            <div className="bg-zinc-100 dark:bg-zinc-700 p-4 rounded">
-              <h3 className="text-lg font-bold text-text-neon mb-3">Your Configuration</h3>
-              <div className="space-y-2 text-sm text-slate-900 dark:text-white">
-                <p><span className="font-semibold">Capacity:</span> {size} GB</p>
-                <p><span className="font-semibold">DDR Type:</span> {ddr}</p>
-                <p><span className="font-semibold">Clock Speed:</span> {clock} MHz</p>
-                <p><span className="font-semibold">Cooling:</span> {cooling}</p>
-                <p><span className="font-semibold">RGB Lighting:</span> {rgb ? '✓ Enabled' : '✗ Disabled'}</p>
-                <p><span className="font-semibold">Antivirus:</span> {antivirus ? '✓ Enabled' : '✗ Disabled'}</p>
+        <div className="glass-card p-8 rounded-2xl border border-slate-700 w-full max-w-lg shadow-2xl relative overflow-hidden group">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
+          
+          <div className="flex flex-col gap-6">
+            <div className="bg-slate-900/80 p-5 rounded-xl border border-slate-800">
+              <h3 className="text-xl font-bold text-text-neon neon-text mb-4 border-b border-slate-800 pb-2">Your Configuration</h3>
+              <div className="grid grid-cols-2 gap-y-3 gap-x-4 text-sm">
+                <p className="flex justify-between border-b border-slate-800/50 pb-1"><span className="text-slate-500">Capacity:</span> <span className="text-slate-200 font-mono">{size} GB</span></p>
+                <p className="flex justify-between border-b border-slate-800/50 pb-1"><span className="text-slate-500">Generation:</span> <span className="text-slate-200 font-mono">{ddr}</span></p>
+                <p className="flex justify-between border-b border-slate-800/50 pb-1"><span className="text-slate-500">Clock:</span> <span className="text-slate-200 font-mono">{clock} MHz</span></p>
+                <p className="flex justify-between border-b border-slate-800/50 pb-1"><span className="text-slate-500">Cooling:</span> <span className="text-slate-200 font-mono">{cooling || 'None'}</span></p>
+                <p className="flex justify-between border-b border-slate-800/50 pb-1"><span className="text-slate-500">RGB:</span> <span className={rgb ? 'text-green-400 font-bold' : 'text-slate-400'}>{rgb ? 'YES' : 'NO'}</span></p>
+                <p className="flex justify-between border-b border-slate-800/50 pb-1"><span className="text-slate-500">Shield:</span> <span className={antivirus ? 'text-green-400 font-bold' : 'text-slate-400'}>{antivirus ? 'YES' : 'NO'}</span></p>
               </div>
             </div>
 
             {error && (
-              <div className="bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-600 text-red-800 dark:text-red-100 px-4 py-3 rounded">
-                <p className="text-sm">{error}</p>
+              <div className="bg-red-500/10 border border-red-500/50 text-red-200 px-4 py-3 rounded-lg flex items-center gap-3">
+                <span className="text-xl">⚠️</span>
+                <p className="text-xs uppercase tracking-wider">{error}</p>
               </div>
             )}
 
             <button
               onClick={handleDownload}
               disabled={isLoading}
-              className="w-full px-6 py-3 bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-500 hover:to-blue-600 disabled:from-gray-400 disabled:to-gray-500 text-white font-bold rounded-lg transition duration-200 disabled:cursor-not-allowed"
+              className="w-full relative px-6 py-4 bg-gradient-to-br from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 disabled:from-slate-700 disabled:to-slate-800 text-white font-black text-lg uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg hover:shadow-cyan-500/25 active:scale-[0.98] disabled:cursor-not-allowed group overflow-hidden"
             >
+              <div className="absolute inset-0 w-full h-full bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform"></div>
               {isLoading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <span className="flex items-center justify-center gap-3">
+                  <svg className="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  Generating...
+                  Allocating...
                 </span>
               ) : (
-                'Download RAM'
+                'INITIALIZE DOWNLOAD'
               )}
             </button>
 
-            <p className="text-xs text-slate-600 dark:text-slate-400 text-center">
-              Click to download your custom RAM file with the selected specifications.
+            <p className="text-[10px] text-slate-500 text-center uppercase tracking-widest leading-relaxed">
+              * By clicking you agree that RAM is a digital concept and no physical sticks will be mailed.
             </p>
           </div>
         </div>
