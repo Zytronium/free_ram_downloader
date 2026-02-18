@@ -13,11 +13,11 @@ export default function Navbar() {
           <Link href="/" className="text-sm font-medium hover:text-text-neon transition-colors">
             Home
           </Link>
-          <Link href="/about" className="text-sm font-medium hover:text-text-neon transition-colors">
-            About
+          <Link href="#configure" className="text-sm font-medium hover:text-text-neon transition-colors">
+            Configure
           </Link>
-          <Link href="/contact" className="text-sm font-medium hover:text-text-neon transition-colors">
-            Contact
+          <Link href="#download" className="text-sm font-medium hover:text-text-neon transition-colors">
+            Download
           </Link>
         </div>
       </nav>
