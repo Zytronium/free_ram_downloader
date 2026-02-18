@@ -16,6 +16,7 @@
 @theme inline {
   --color-text-light: #1d85c2;
   --color-text-dark: #74ccff;
+  --color-text-neon: #ffcd18;
 }
 
 @media (prefers-color-scheme: dark) {
