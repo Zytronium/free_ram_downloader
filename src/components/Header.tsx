@@ -10,6 +10,7 @@ export default function Header() {
         Instantly boost your computer&apos;s performance by downloading
         additional RAM directly from our secure servers, 100% free.
       </p>
+      <Spacer />
     </div>
   )
 }
