@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="w-full bg-slate-900 border-t border-slate-800 py-4 px-6 mt-auto">
@@ -10,10 +12,20 @@ export default function Footer() {
           </p>
         </div>
 
-        <p className="text-slate-500 text-xs text-center">
-          © 2026 <a href="https://zytronium.dev/" target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-text-neon transition-colors">Zytronium</a>
+        <div className="flex gap-6 text-xs font-medium uppercase tracking-widest">
+          <Link href="/terms" className="text-slate-500 hover:text-cyan-400 transition-colors">
+            Terms of Use
+          </Link>
+          <span className="text-slate-800">|</span>
+          <a href="https://zytronium.dev/" target="_blank"
+             rel="noopener noreferrer"
+             className="text-slate-500 hover:text-text-neon transition-colors">
+            Zytronium
+          </a>
+        </div>
+
+        <p className="text-slate-500 text-[10px] text-center opacity-50">
+          © 2026 Zytronium. All rights reserved.
         </p>
       </div>
     </footer>

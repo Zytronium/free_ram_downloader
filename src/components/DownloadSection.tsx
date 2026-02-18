@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Spacer from "@/components/Spacer";
+import Link from "next/link";
 
 interface DownloadSectionProps {
   size: number;
@@ -14,8 +15,10 @@ export default function DownloadSection(props: DownloadSectionProps) {
   const { size, ddr, clock, cooling, rgb, antivirus } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   const handleDownload = async () => {
+    if (!agreedToTerms) return;
     try {
       setIsLoading(true);
       setError(null);
@@ -93,24 +96,46 @@ export default function DownloadSection(props: DownloadSectionProps) {
               </div>
             )}
 
-            <button
-              onClick={handleDownload}
-              disabled={isLoading}
-              className="w-full relative px-6 py-4 bg-gradient-to-br from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 disabled:from-slate-700 disabled:to-slate-800 text-white font-black text-lg uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg hover:shadow-cyan-500/25 active:scale-[0.98] disabled:cursor-not-allowed group overflow-hidden"
-            >
-              <div className="absolute inset-0 w-full h-full bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform"></div>
-              {isLoading ? (
-                <span className="flex items-center justify-center gap-3">
-                  <svg className="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            <div className="flex flex-col gap-4">
+              <label className="flex items-center gap-3 cursor-pointer group/terms">
+                <div className="relative mt-1">
+                  <input
+                    type="checkbox"
+                    checked={agreedToTerms}
+                    onChange={(e) => setAgreedToTerms(e.target.checked)}
+                    className="peer appearance-none w-5 h-5 rounded border border-slate-700 bg-slate-900 checked:bg-cyan-500 checked:border-cyan-500 transition-all cursor-pointer"
+                  />
+                  <svg 
+                    className="absolute top-1 left-1 w-3 h-3 text-white pointer-events-none hidden peer-checked:block" 
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"
+                  >
+                    <polyline points="20 6 9 17 4 12"></polyline>
                   </svg>
-                  Allocating...
+                </div>
+                <span className="text-xs text-slate-400 leading-tight">
+                  I agree to the <Link href="/terms" target="_blank" className="text-cyan-400 hover:underline">Terms of Use</Link>.
                 </span>
-              ) : (
-                'INITIALIZE DOWNLOAD'
-              )}
-            </button>
+              </label>
+
+              <button
+                onClick={handleDownload}
+                disabled={isLoading || !agreedToTerms}
+                className="w-full relative px-6 py-4 bg-gradient-to-br from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 disabled:from-slate-800 disabled:to-slate-900 disabled:text-slate-600 text-white font-black text-lg uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg hover:shadow-cyan-500/25 active:scale-[0.98] disabled:cursor-not-allowed group overflow-hidden"
+              >
+                <div className="absolute inset-0 w-full h-full bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform"></div>
+                {isLoading ? (
+                  <span className="flex items-center justify-center gap-3">
+                    <svg className="animate-spin h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Allocating...
+                  </span>
+                ) : (
+                  'INITIALIZE DOWNLOAD'
+                )}
+              </button>
+            </div>
 
             <p className="text-[10px] text-slate-500 text-center uppercase tracking-widest leading-relaxed">
               * By clicking you agree that RAM is a digital concept and no physical sticks will be mailed.
