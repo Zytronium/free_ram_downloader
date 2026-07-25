@@ -19,7 +19,8 @@ export default function DownloadSection(props: DownloadSectionProps) {
 
   const handleDownload = async () => {
     if (!agreedToTerms) return;
-    try {
+    alert('Downloads are temporarily disabled to save on resources.');
+    /*try {
       setIsLoading(true);
       setError(null);
 
@@ -62,7 +63,7 @@ export default function DownloadSection(props: DownloadSectionProps) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setIsLoading(false);
-    }
+    }*/
   };
 
   return (
@@ -75,7 +76,7 @@ export default function DownloadSection(props: DownloadSectionProps) {
 
         <div className="glass-card p-4 md:p-8 rounded-2xl border border-slate-700 w-full max-w-lg shadow-2xl relative overflow-hidden group">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700"></div>
-          
+
           <div className="flex flex-col gap-6">
             <div className="bg-slate-900/80 p-4 md:p-5 rounded-xl border border-slate-800">
               <h3 className="text-xl font-bold text-text-neon neon-text mb-4 border-b border-slate-800 pb-2">Your Configuration</h3>
@@ -105,8 +106,8 @@ export default function DownloadSection(props: DownloadSectionProps) {
                     onChange={(e) => setAgreedToTerms(e.target.checked)}
                     className="peer appearance-none w-5 h-5 rounded border border-slate-700 bg-slate-900 checked:bg-cyan-500 checked:border-cyan-500 transition-all cursor-pointer"
                   />
-                  <svg 
-                    className="absolute top-1 left-1 w-3 h-3 text-white pointer-events-none hidden peer-checked:block" 
+                  <svg
+                    className="absolute top-1 left-1 w-3 h-3 text-white pointer-events-none hidden peer-checked:block"
                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"
                   >
                     <polyline points="20 6 9 17 4 12"></polyline>

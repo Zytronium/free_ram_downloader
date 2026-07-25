@@ -1,7 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams;
+  return NextResponse.json(
+    {error: 'This feature has been temporarily disabled.'},
+    {status: 503}
+  )
+
+  // CLONERS: To re-enable this API route, uncomment the block below and delete the block above.
+
+  /*const searchParams = request.nextUrl.searchParams;
   const size = searchParams.get('size');
   const ddr = searchParams.get('ddr');
   const clock = searchParams.get('clock');
@@ -68,5 +75,5 @@ export async function GET(request: NextRequest) {
       'Content-Disposition': `attachment; filename="${filename}"`,
       'Content-Length': String(totalBytes),
     },
-  });
+  });*/
 }
